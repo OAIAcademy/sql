@@ -78,7 +78,8 @@ ORDER BY name;
 
 SELECT name, COUNT(*) as count
 FROM enrolment
-JOIN courses on courses.id = enrolment.course_id
+         JOIN courses on courses.id = enrolment.course_id
+where courses.startdate > '2025-1-1'
 GROUP BY name
 HAVING COUNT(*) > (
     SELECT AVG(enrolments_counts.count)
@@ -87,5 +88,5 @@ HAVING COUNT(*) > (
              FROM enrolment
              GROUP BY course_id
          ) as enrolments_counts
-);
-
+)
+order by count;
