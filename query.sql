@@ -74,6 +74,12 @@ FROM lessons,
 where courses.id = lessons.course_id
 ORDER BY name;
 
+select c.name, (c.maxstudent - count(*)) as disponibilita
+from enrolment
+         join courses c on c.id = enrolment.course_id
+group by course_id, c.name, c.maxstudent
+order by disponibilita desc;
+
 -- subquery
 
 SELECT name, COUNT(*) as count
